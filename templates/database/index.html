@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% block main %}
-<h2 align="left">用户表数据</h2>
-<hr>
-{{ table }}
+<h3 align="left">用户表数据</h3>
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>邮箱</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.profile.email}}</td>
+        <td><a href="{{url_for('db.user', id=user.id)}}" class="">删除</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
